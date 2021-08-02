@@ -13,13 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'App\Http\Controllers\PagesController@index');
+Route::get('/about', 'App\Http\Controllers\PagesController@index');
+Route::get('/contact', 'App\Http\Controllers\PagesController@index');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('books', 'App\Http\Controllers\CategoriesController');
+Route::resource('authors', 'App\Http\Controllers\AuthorsController');
+Route::resource('categories', 'App\Http\Controllers\CategoriesController');
+Route::resource('publishers', 'App\Http\Controllers\PublishersController');
 
 Auth::routes();
 
