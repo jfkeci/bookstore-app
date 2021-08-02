@@ -6,8 +6,8 @@
     {!! Form::open(['action' => 'App\Http\Controllers\CategoriesController@store', 'method' => 'POST']) !!}
 
     <div class="form-group">
-        {{ Form::label('category', 'Category') }}
-        {{ Form::text('category', '', ['class' => 'form-control', 'placeholder' => 'Category']) }}
+        {{ Form::label('name', 'Name') }}
+        {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Name']) }}
     </div>
 
     {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}

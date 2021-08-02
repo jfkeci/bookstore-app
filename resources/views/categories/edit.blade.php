@@ -6,8 +6,8 @@
     {!! Form::open(['action' => ['App\Http\Controllers\CategoriesController@update', $category->id], 'method' => 'POST']) !!}
 
     <div class="form-group">
-        {{ Form::label('category', 'Category') }}
-        {{ Form::text('category', $category->category, ['class' => 'form-control', 'placeholder' => 'Category']) }}
+        {{ Form::label('name', 'Name') }}
+        {{ Form::text('name', $category->name, ['class' => 'form-control', 'placeholder' => 'Name']) }}
     </div>
 
     {{ Form::hidden('_method', 'PUT') }}

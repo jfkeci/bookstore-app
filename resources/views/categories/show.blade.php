@@ -7,7 +7,7 @@
     <br>
     <br>
     <div class="col-md-12">
-        <h1>{{ $category->category }}</h1>
+        <h1>{{ $category->name }}</h1>
         <hr>
         <small>Created: {{ $category->created_at }}</small>
     </div>
@@ -21,12 +21,12 @@
 
     <hr>
 
-    @if (count($notes) > 0)
+    {{-- @if (count($notes) > 0)
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">Notes by Category: {{ $category->category }}</div>
+                        <div class="card-header">Notes by Category: {{ $category->name }}</div>
 
                         <div class="card-body">
                             @if (session('status'))
@@ -70,7 +70,7 @@
         </div>
     @else
         <h3>No notes found for this category</h3>
-    @endif
+    @endif --}}
 
 
 @endsection

@@ -11,7 +11,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <a href="/categories/{{ $category->id }}">
-                                    <h3>{{ $category->category }}</h3>
+                                    <h3>{{ $category->name }}</h3>
                                 </a>
                                 <small>{{ $category->created_at }}</small>
                             </div>

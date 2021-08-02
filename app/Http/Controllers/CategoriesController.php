@@ -17,7 +17,6 @@ class CategoriesController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -26,6 +25,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::all();
+
         return view('categories.index')->with('categories', $categories);
     }
 
@@ -47,7 +47,17 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        $category = new Category;
+
+        $category->name = $request->input('name');
+
+        $category->save();
+
+        return redirect('/categories')->with('success', 'Category created');
     }
 
     /**
@@ -59,6 +69,12 @@ class CategoriesController extends Controller
     public function show($id)
     {
         $category = Category::find($id);
+
+        $data = array(
+            'category' => $category
+        );
+
+        return view('categories.show')->with($data);
     }
 
     /**
@@ -69,7 +85,9 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+
+        return view('categories.edit')->with('category', $category);
     }
 
     /**
@@ -81,7 +99,17 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        $category = Category::find($id);
+
+        $category->name = $request->input('name');
+
+        $category->save();
+
+        return redirect('/categories')->with('success', 'Category updated');
     }
 
     /**
@@ -92,6 +120,8 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+        return redirect('/categories')->with('success', 'Category removed');
     }
 }
