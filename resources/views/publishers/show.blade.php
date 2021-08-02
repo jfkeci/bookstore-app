@@ -21,6 +21,4 @@
     {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
     {!! Form::close() !!}
 
-    <hr>
-
 @endsection

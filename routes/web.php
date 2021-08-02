@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('books', 'App\Http\Controllers\CategoriesController');
+Route::resource('books', 'App\Http\Controllers\BooksController');
 Route::resource('authors', 'App\Http\Controllers\AuthorsController');
 Route::resource('categories', 'App\Http\Controllers\CategoriesController');
 Route::resource('publishers', 'App\Http\Controllers\PublishersController');
