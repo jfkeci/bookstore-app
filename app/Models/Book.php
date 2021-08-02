@@ -11,18 +11,18 @@ use App\Models\Category;
 class Book extends Model
 {
 
-    public function publishers()
+    public function publisher()
     {
-        return $this->hasMany('Publisher');
+        return $this->belongsTo('Publisher');
     }
 
-    public function authors()
+    public function author()
     {
-        return $this->hasMany('Author');
+        return $this->belongsTo('Author');
     }
 
-    public function categories()
+    public function category()
     {
-        return $this->hasMany('Category');
+        return $this->belongsTo('Category');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Author;
 
 class AuthorsController extends Controller
 {
@@ -23,7 +24,8 @@ class AuthorsController extends Controller
      */
     public function index()
     {
-        //
+        $authors = Author::all();
+        return view('authors.index')->with('authors', $authors);
     }
 
     /**
@@ -33,7 +35,7 @@ class AuthorsController extends Controller
      */
     public function create()
     {
-        //
+        return view('authors.create');
     }
 
     /**
@@ -44,7 +46,21 @@ class AuthorsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'date_of_birth' => 'required',
+            'date_of_death' => 'required'
+        ]);
+
+        $author = new Author;
+
+        $author->name = $request->input('name');
+        $author->date_of_birth = $request->input('date_of_birth');
+        $author->date_of_death = $request->input('date_of_death');
+
+        $author->save();
+
+        return redirect('/authors')->with('success', 'Author created');
     }
 
     /**
