@@ -2,19 +2,20 @@
 
 @section('content')
 
-    <a class="btn btn-default" href="/categories">Go back</a>
+    <a class="btn btn-default" href="/authors">Go back</a>
 
     <br>
     <br>
     <div class="col-md-12">
-        <h1>{{ $category->name }}</h1>
+        <h1>{{ $author->name }}</h1>
         <hr>
-        <small>Created: {{ $category->created_at }}</small>
+        <small>Created: {{ $author->created_at }}</small>
     </div>
     <hr>
 
-    <a href="/categories/{{ $category->id }}/edit" class="btn btn-default"> Edit </a>
-    {!! Form::open(['action' => ['App\Http\Controllers\CategoriesController@destroy', $category->id], 'method' => 'POST', 'class' => 'pull-right']) !!}
+    <a href="/authors/{{ $author->id }}/edit" class="btn btn-default"> Edit </a>
+
+    {!! Form::open(['action' => ['App\Http\Controllers\AuthorsController@destroy', $author->id], 'method' => 'POST', 'class' => 'pull-right']) !!}
     {{ Form::hidden('_method', 'DELETE') }}
     {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
     {!! Form::close() !!}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Publisher;
 
 class PublishersController extends Controller
 {
@@ -23,7 +24,8 @@ class PublishersController extends Controller
      */
     public function index()
     {
-        //
+        $publishers = Publisher::all();
+        return view('publishers.index')->with('publishers', $publishers);
     }
 
     /**
@@ -33,7 +35,7 @@ class PublishersController extends Controller
      */
     public function create()
     {
-        //
+        return view('publishers.create');
     }
 
     /**
@@ -44,7 +46,19 @@ class PublishersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'address' => 'required'
+        ]);
+
+        $publisher = new Publisher;
+
+        $publisher->name = $request->input('name');
+        $publisher->address = $request->input('address');
+
+        $publisher->save();
+
+        return redirect('/publishers')->with('success', 'Publisher created');
     }
 
     /**
@@ -55,7 +69,8 @@ class PublishersController extends Controller
      */
     public function show($id)
     {
-        //
+        $publisher = Publisher::find($id);
+        return view('publishers.show')->with('publisher', $publisher);
     }
 
     /**
@@ -66,7 +81,8 @@ class PublishersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $publisher = Publisher::find($id);
+        return view('publishers.edit')->with('publisher', $publisher);
     }
 
     /**
@@ -78,7 +94,19 @@ class PublishersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'address' => 'required'
+        ]);
+
+        $publisher = Publisher::find($id);
+
+        $publisher->name = $request->input('name');
+        $publisher->address = $request->input('address');
+
+        $publisher->save();
+
+        return redirect('/publishers')->with('success', 'Publisher updated');
     }
 
     /**
@@ -89,6 +117,8 @@ class PublishersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $publisher = Publisher::find($id);
+        $publisher->delete();
+        return redirect('publishers')->with('success', 'Publisher deleted');
     }
 }

@@ -14,6 +14,7 @@
     <hr>
 
     <a href="/categories/{{ $category->id }}/edit" class="btn btn-default"> Edit </a>
+
     {!! Form::open(['action' => ['App\Http\Controllers\CategoriesController@destroy', $category->id], 'method' => 'POST', 'class' => 'pull-right']) !!}
     {{ Form::hidden('_method', 'DELETE') }}
     {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}

@@ -71,7 +71,8 @@ class AuthorsController extends Controller
      */
     public function show($id)
     {
-        //
+        $author = Author::find($id);
+        return view('authors.show')->with('author', $author);
     }
 
     /**
@@ -82,7 +83,8 @@ class AuthorsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $author = Author::find($id);
+        return view('authors.edit')->with('author', $author);
     }
 
     /**
@@ -94,7 +96,21 @@ class AuthorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'date_of_birth' => 'required',
+            'date_of_death' => 'required'
+        ]);
+
+        $author = Author::find($id);
+
+        $author->name = $request->input('name');
+        $author->date_of_birth = $request->input('date_of_birth');
+        $author->date_of_death = $request->input('date_of_death');
+
+        $author->save();
+
+        return redirect('/authors')->with('success', 'Author updated');
     }
 
     /**
@@ -105,6 +121,8 @@ class AuthorsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $author = Author::find($id);
+        $author->delete();
+        return redirect('/authors')->with('success', 'Author deleted');
     }
 }

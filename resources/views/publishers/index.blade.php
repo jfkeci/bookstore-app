@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Authors</h1>
+    <h1>Publishers</h1>
 
-    @if (count($authors) > 0)
+    @if (count($publishers) > 0)
         <div class="card">
             <ul class="list-group list-group-flash">
-                @foreach ($authors as $author)
+                @foreach ($publishers as $publisher)
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-md-12">
-                                <a href="/authors/{{ $author->id }}">
-                                    <h3>{{ $author->name }}</h3>
+                                <a href="/publishers/{{ $publisher->id }}">
+                                    <h3>{{ $publisher->name }}</h3>
                                 </a>
-                                <small>{{ $author->created_at }}</small>
+                                <small>{{ $publisher->created_at }}</small>
                             </div>
                         </div>
                     </li>
